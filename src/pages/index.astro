@@ -1,0 +1,50 @@
+---
+import '@/styles/starwind.css';
+import '@/styles/fonts.css';
+import Navigation from '@/components/Navigation.astro';
+import Hero from '@/components/Hero.astro';
+import About from '@/components/About.astro';
+import Gallery from '@/components/Gallery.astro';
+import Reviews from '@/components/Reviews.astro';
+import Menu from '@/components/Menu.astro';
+import Catering from '@/components/Catering.astro';
+import Merch from '@/components/Merch.astro';
+import FindUs from '@/components/FindUs.astro';
+import FAQ from '@/components/FAQ.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<html lang="sv">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm. Besök Sospeso för espresso, cornetti och äkta italiensk kaffekultur." />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Open Graph / Social -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://sospesosthlm.com" />
+		<meta property="og:title" content="Sospeso - Italienskt Kaffe på Gärdet" />
+		<meta property="og:description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm. Espresso, cornetti och äkta kaffekultur." />
+		<meta property="og:image" content="https://sospesosthlm.com/hero-background.webp" />
+		<meta property="og:locale" content="sv_SE" />
+		
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preload" as="image" href="/hero-background.webp" fetchpriority="high" />
+				<title>Sospeso - Italienskt Kaffe på Gärdet</title>
+	</head>
+
+	<body class="min-h-screen flex flex-col scroll-smooth">
+		<Navigation />
+		<Hero />
+		<About />
+		<Gallery />
+		<Reviews />
+		<Menu />
+		<Catering />
+		<Merch />
+		<FAQ />
+		<FindUs />
+		<Footer />
+	</body>
+</html>

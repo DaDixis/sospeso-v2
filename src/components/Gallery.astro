@@ -1,0 +1,95 @@
+---
+// Gallery component - Image collage
+// Clean grid layout with section header
+---
+
+<section id="galleri" class="p-4 sm:p-6 lg:p-8">
+	<div class="max-w-6xl mx-auto">
+		<!-- Section Header -->
+		<h2 class="text-3xl sm:text-4xl tracking-tight text-foreground mb-6 sm:mb-8 text-center font-display">
+			Från Vårt Café
+		</h2>
+		
+		<!-- Gallery Grid - 2 rows, balanced layout -->
+		<div class="gallery-grid">
+			<!-- Row 1: Wide + Square + Square -->
+			<div class="gallery-item wide">
+				<img src="/gallery/465625346_18074300683608281_1585978899008811256_n.webp" alt="Espresso från Sospeso" loading="lazy" />
+			</div>
+			<div class="gallery-item">
+				<img src="/gallery/469277128_18076608766608281_6498017909358642527_n.webp" alt="Färska croissanter" loading="lazy" />
+			</div>
+			<div class="gallery-item">
+				<img src="/gallery/418269537_18044448928608281_6422876959594812420_n.webp" alt="Kaffe och bakelse" loading="lazy" />
+			</div>
+			
+			<!-- Row 2: Square + Square + Wide -->
+			<div class="gallery-item">
+				<img src="/gallery/469028875_18076608787608281_3997326141294755413_n.webp" alt="Espresso serverad" loading="lazy" />
+			</div>
+			<div class="gallery-item">
+				<img src="/gallery/472291976_18079600228608281_4348776798519477251_n.webp" alt="Barista latte art" loading="lazy" />
+			</div>
+			<div class="gallery-item wide">
+				<img src="/gallery/469002718_18076607638608281_3925874698311000688_n.webp" alt="Färska smörgåsar och croissanter" loading="lazy" />
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+	}
+	
+	@media (min-width: 768px) {
+		.gallery-grid {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 0.75rem;
+		}
+	}
+	
+	@media (min-width: 1024px) {
+		.gallery-grid {
+			gap: 1rem;
+		}
+	}
+	
+	.gallery-item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 0.75rem;
+		aspect-ratio: 1;
+	}
+	
+	.gallery-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.4s ease;
+	}
+	
+	.gallery-item:hover img {
+		transform: scale(1.05);
+	}
+	
+	/* Wide item - spans 2 columns */
+	.gallery-item.wide {
+		grid-column: span 2;
+		aspect-ratio: 2/1;
+	}
+	
+	@media (min-width: 640px) {
+		.gallery-item {
+			border-radius: 1rem;
+		}
+	}
+	
+	@media (min-width: 1024px) {
+		.gallery-item {
+			border-radius: 1.25rem;
+		}
+	}
+</style>

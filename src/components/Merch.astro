@@ -1,0 +1,425 @@
+---
+// Merch component - Branded merchandise section
+// Displays cafe merchandise in an elegant card grid
+---
+
+<section id="merch" class="p-4 sm:p-6 lg:p-8 scroll-mt-8">
+	<div class="max-w-6xl mx-auto">
+		<!-- Section Header -->
+		<div class="text-center mb-8 sm:mb-10">
+			<h2 class="text-3xl sm:text-4xl tracking-tight text-foreground mb-3 font-display">
+				Merch
+			</h2>
+			<p class="text-base text-muted-foreground max-w-xl mx-auto font-body">
+				Ta med en bit av Sospeso hem. Vår merch är designad för dem som uppskattar det autentiska.
+			</p>
+		</div>
+		
+		<!-- Product Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+			
+			<!-- Hoodie -->
+			<article class="merch-card group" data-product="Hoodie" data-price="799 kr" data-image="/plagg/hoodie.webp">
+				<div class="merch-image-wrapper">
+					<img 
+						src="/plagg/hoodie.webp" 
+						alt="Sospeso Hoodie - Svart" 
+						loading="lazy"
+						class="merch-image"
+					/>
+				</div>
+				<div class="merch-info">
+					<div class="merch-header">
+						<h3 class="merch-title">Hoodie</h3>
+						<span class="merch-price">799 kr</span>
+					</div>
+					<p class="merch-description">Bekväm och varm hoodie i premiumkvalitet med broderad logotyp.</p>
+				</div>
+			</article>
+			
+			<!-- T-shirt Svart -->
+			<article class="merch-card group" data-product="T-shirt Svart" data-price="499 kr" data-image="/plagg/tshirt-svart.webp">
+				<div class="merch-image-wrapper">
+					<img 
+						src="/plagg/tshirt-svart.webp" 
+						alt="Sospeso T-shirt - Svart" 
+						loading="lazy"
+						class="merch-image"
+					/>
+				</div>
+				<div class="merch-info">
+					<div class="merch-header">
+						<h3 class="merch-title">T-shirt Svart</h3>
+						<span class="merch-price">499 kr</span>
+					</div>
+					<p class="merch-description">Klassisk t-shirt i mjuk bomull med minimalistisk design.</p>
+				</div>
+			</article>
+			
+			<!-- T-shirt Vit -->
+			<article class="merch-card group" data-product="T-shirt Vit" data-price="499 kr" data-image="/plagg/tshirt-vit.webp">
+				<div class="merch-image-wrapper">
+					<img 
+						src="/plagg/tshirt-vit.webp" 
+						alt="Sospeso T-shirt - Vit" 
+						loading="lazy"
+						class="merch-image"
+					/>
+				</div>
+				<div class="merch-info">
+					<div class="merch-header">
+						<h3 class="merch-title">T-shirt Vit</h3>
+						<span class="merch-price">499 kr</span>
+					</div>
+					<p class="merch-description">Ljus variant i samma sköna kvalitet och tidlösa snitt.</p>
+				</div>
+			</article>
+			
+			<!-- Mössa -->
+			<article class="merch-card group" data-product="Mössa" data-price="399 kr" data-image="/plagg/Mössa.webp">
+				<div class="merch-image-wrapper">
+					<img 
+						src="/plagg/Mössa.webp" 
+						alt="Sospeso Mössa" 
+						loading="lazy"
+						class="merch-image"
+					/>
+				</div>
+				<div class="merch-info">
+					<div class="merch-header">
+						<h3 class="merch-title">Mössa</h3>
+						<span class="merch-price">399 kr</span>
+					</div>
+					<p class="merch-description">Varm stickad mössa med vävd logotyp. Perfekt för stockholmska vintrar.</p>
+				</div>
+			</article>
+			
+		</div>
+		
+		<!-- Lightbox Modal -->
+		<div id="merch-lightbox" class="lightbox">
+			<div class="lightbox-backdrop"></div>
+			
+			<!-- Navigation Arrow Left -->
+			<button class="lightbox-nav lightbox-prev" aria-label="Föregående">
+				<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<polyline points="15 18 9 12 15 6"></polyline>
+				</svg>
+			</button>
+			
+			<div class="lightbox-content">
+				<button class="lightbox-close" aria-label="Stäng">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+				<img id="lightbox-image" src="" alt="" class="lightbox-image" />
+				<div class="lightbox-info">
+					<h3 id="lightbox-title" class="lightbox-title"></h3>
+					<span id="lightbox-price" class="lightbox-price"></span>
+				</div>
+			</div>
+			
+			<!-- Navigation Arrow Right -->
+			<button class="lightbox-nav lightbox-next" aria-label="Nästa">
+				<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<polyline points="9 18 15 12 9 6"></polyline>
+				</svg>
+			</button>
+		</div>
+		
+		<!-- Availability note -->
+		<p class="text-center text-sm text-muted-foreground mt-6 sm:mt-8 font-body">
+			Finns att köpa i vårt kafé på Värtavägen 31.
+		</p>
+	</div>
+</section>
+
+<style>
+	.merch-card {
+		background: #ffffff;
+		border-radius: 1rem;
+		overflow: hidden;
+		transition: all 0.3s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 20px rgba(0, 0, 0, 0.04);
+	}
+	
+	.merch-card:hover {
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+		transform: translateY(-3px);
+	}
+	
+	.merch-image-wrapper {
+		aspect-ratio: 1;
+		overflow: hidden;
+	}
+	
+	.merch-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.4s ease;
+	}
+	
+	.merch-card:hover .merch-image {
+		transform: scale(1.05);
+	}
+	
+	.merch-info {
+		padding: 1rem 1.25rem 1.25rem;
+		background: #ffffff;
+		border-top: 1px solid rgba(0, 0, 0, 0.04);
+	}
+	
+	.merch-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 0.5rem;
+		gap: 0.75rem;
+	}
+	
+	.merch-title {
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: hsl(var(--foreground));
+		letter-spacing: -0.01em;
+	}
+	
+	.merch-price {
+		font-size: 0.9375rem;
+		font-weight: 500;
+		color: hsl(var(--foreground));
+		white-space: nowrap;
+	}
+	
+	.merch-description {
+		font-size: 0.875rem;
+		line-height: 1.5;
+		color: hsl(var(--muted-foreground));
+	}
+	
+	@media (min-width: 640px) {
+		.merch-card {
+			border-radius: 1.25rem;
+		}
+	}
+	
+	@media (min-width: 1024px) {
+		.merch-card {
+			border-radius: 1rem;
+		}
+	}
+	
+	/* Lightbox styles */
+	.lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+		isolation: isolate;
+	}
+	
+	.lightbox.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	
+	.lightbox-backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.85);
+		backdrop-filter: blur(4px);
+	}
+	
+	.lightbox-content {
+		position: relative;
+		max-width: 90vw;
+		max-height: 90vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transform: scale(0.95);
+		transition: transform 0.3s ease;
+	}
+	
+	.lightbox.active .lightbox-content {
+		transform: scale(1);
+	}
+	
+	.lightbox-close {
+		position: absolute;
+		top: -3rem;
+		right: 0;
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		border-radius: 50%;
+		color: white;
+		cursor: pointer;
+		transition: background 0.2s ease;
+	}
+	
+	.lightbox-close:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+	
+	.lightbox-image {
+		max-width: 100%;
+		max-height: 70vh;
+		object-fit: contain;
+		border-radius: 1rem;
+		background: white;
+	}
+	
+	.lightbox-info {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		margin-top: 1rem;
+		padding: 0.75rem 1.5rem;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 0.5rem;
+	}
+	
+	.lightbox-title {
+		font-size: 1.25rem;
+		font-weight: 500;
+		color: white;
+	}
+	
+	.lightbox-price {
+		font-size: 1rem;
+		color: rgba(255, 255, 255, 0.7);
+	}
+	
+	.lightbox-nav {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 3rem;
+		height: 3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		border-radius: 50%;
+		color: white;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		z-index: 10;
+	}
+	
+	.lightbox-nav:hover {
+		background: rgba(255, 255, 255, 0.25);
+		transform: translateY(-50%) scale(1.1);
+	}
+	
+	.lightbox-prev {
+		left: 1.5rem;
+	}
+	
+	.lightbox-next {
+		right: 1.5rem;
+	}
+	
+	@media (min-width: 768px) {
+		.lightbox-nav {
+			width: 3.5rem;
+			height: 3.5rem;
+		}
+		
+		.lightbox-prev {
+			left: 2rem;
+		}
+		
+		.lightbox-next {
+			right: 2rem;
+		}
+	}
+</style>
+
+<script>
+	const lightbox = document.getElementById('merch-lightbox');
+	const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+	const lightboxTitle = document.getElementById('lightbox-title');
+	const lightboxPrice = document.getElementById('lightbox-price');
+	const lightboxBackdrop = lightbox?.querySelector('.lightbox-backdrop');
+	const lightboxClose = lightbox?.querySelector('.lightbox-close');
+	const lightboxPrev = lightbox?.querySelector('.lightbox-prev');
+	const lightboxNext = lightbox?.querySelector('.lightbox-next');
+	const cards = document.querySelectorAll('.merch-card');
+	
+	let currentIndex = 0;
+
+	// Move lightbox to body to ensure it's above all other content
+	if (lightbox) {
+		document.body.appendChild(lightbox);
+	}
+
+	function showProduct(index: number) {
+		const card = cards[index];
+		if (!card) return;
+		
+		const image = card.getAttribute('data-image');
+		const product = card.getAttribute('data-product');
+		const price = card.getAttribute('data-price');
+		
+		if (lightboxImage && image) lightboxImage.src = image;
+		if (lightboxImage && product) lightboxImage.alt = product;
+		if (lightboxTitle && product) lightboxTitle.textContent = product;
+		if (lightboxPrice && price) lightboxPrice.textContent = price;
+		
+		currentIndex = index;
+	}
+
+	function openLightbox(index: number) {
+		showProduct(index);
+		lightbox?.classList.add('active');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeLightbox() {
+		lightbox?.classList.remove('active');
+		document.body.style.overflow = '';
+	}
+
+	function showPrev() {
+		const newIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
+		showProduct(newIndex);
+	}
+
+	function showNext() {
+		const newIndex = currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
+		showProduct(newIndex);
+	}
+
+	cards.forEach((card, index) => {
+		card.addEventListener('click', () => openLightbox(index));
+		(card as HTMLElement).style.cursor = 'pointer';
+	});
+
+	lightboxBackdrop?.addEventListener('click', closeLightbox);
+	lightboxClose?.addEventListener('click', closeLightbox);
+	lightboxPrev?.addEventListener('click', showPrev);
+	lightboxNext?.addEventListener('click', showNext);
+
+	document.addEventListener('keydown', (e) => {
+		if (!lightbox?.classList.contains('active')) return;
+		
+		if (e.key === 'Escape') closeLightbox();
+		if (e.key === 'ArrowLeft') showPrev();
+		if (e.key === 'ArrowRight') showNext();
+	});
+</script>

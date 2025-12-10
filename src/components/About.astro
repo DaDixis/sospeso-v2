@@ -1,0 +1,45 @@
+---
+// About component - "Om Oss" section
+// Styled to match FindUs section
+import { Card, CardContent } from '@/components/starwind/card';
+---
+
+<section id="om-oss" class="p-4 sm:p-6 lg:p-8 scroll-mt-8">
+	<div class="max-w-6xl mx-auto">
+		<Card class="overflow-hidden">
+			<div class="grid grid-cols-1 md:grid-cols-2">
+				<!-- Image -->
+				<div class="aspect-[4/3] md:aspect-[3/4] lg:aspect-auto">
+					<img 
+						src="/om-oss.webp" 
+						alt="Kaffe och vår lilla maskot på Sospeso" 
+						class="w-full h-full object-cover object-top"
+						loading="lazy"
+					/>
+				</div>
+				
+				<!-- Content -->
+				<CardContent class="p-6 sm:p-8 flex flex-col justify-center">
+					<h2 class="text-3xl sm:text-4xl tracking-tight text-foreground mb-6 font-display">
+						Ditt kafékvarter på Gärdet
+					</h2>
+					
+					<div class="space-y-4 text-base text-muted-foreground leading-relaxed font-body">
+						<p>
+							Sospeso är ditt lokala kafé i hjärtat av Gärdet. Vårt namn är inspirerat av den vackra traditionen <em>"caffè sospeso"</em> – där någon betalar för en extra kaffe till en främling som senare kan komma och hämta den. Det är en gest av generositet och gemenskap som vi vill föra vidare i vår stadsdel.
+						</p>
+						<p>
+							Här handlar allt om äkta kafékultur — noggrant bryggd kaffe, färska bakverk och tid för det lilla samtalet. Vi tror på kvalitet före kvantitet. Varje kopp är gjord med passion och precision, för att du ska få den bästa upplevelsen.
+						</p>
+						<p>
+							Vår mysiga lilla hörna vid Tessinparken är perfekt för att snabbt svänga förbi och hämta din favoritkaffe — kanske på väg till en promenad i parken eller på morgonens pendling. Vi har blivit en naturlig del av kvarteret, där grannar, hundägare och kaffälskare möts.
+						</p>
+						<p class="text-foreground font-medium font-body">
+							Välkommen in. Hämta en kaffe, välj bland våra bakverk och njut — i parken eller på språng.
+						</p>
+					</div>
+				</CardContent>
+			</div>
+		</Card>
+	</div>
+</section>

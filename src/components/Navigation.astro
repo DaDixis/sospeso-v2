@@ -1,0 +1,203 @@
+---
+// Navigation component - Sticky header with smooth scroll and mobile hamburger menu
+---
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out" id="navbar">
+  <!-- Desktop Navigation -->
+  <nav class="hidden sm:flex items-center justify-between px-8 lg:px-12 py-6 transition-all duration-500 ease-out nav-default" id="desktop-nav">
+    <a href="/" class="flex items-center">
+      <img src="/logo.svg" alt="Sospeso" class="h-24 w-auto brightness-0 invert" />
+    </a>
+    <div class="flex items-center gap-6">
+      <a href="#om-oss" class="text-white/80 hover:text-white transition-all duration-300 font-body font-medium hover:bg-white/10 px-4 py-2 rounded-md">
+        Om Oss
+      </a>
+      <a href="#meny" class="text-white/80 hover:text-white transition-all duration-300 font-body font-medium hover:bg-white/10 px-4 py-2 rounded-md">
+        Meny
+      </a>
+      <a href="#hitta-oss" class="text-white/80 hover:text-white transition-all duration-300 font-body font-medium hover:bg-white/10 px-4 py-2 rounded-md">
+        Hitta Oss
+      </a>
+    </div>
+  </nav>
+  
+  <!-- Mobile Navigation -->
+  <nav class="sm:hidden flex items-center justify-between px-2 py-1 bg-neutral-900 relative z-50">
+    <a href="/" class="flex items-center">
+      <img src="/logo.svg" alt="Sospeso" class="h-20 w-auto brightness-0 invert" />
+    </a>
+    <button 
+      id="hamburger-btn" 
+      class="relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-white focus:outline-none z-[70]"
+      aria-label="Öppna meny"
+      aria-expanded="false"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="sm:hidden fixed inset-0 bg-neutral-900 z-40 flex-col items-center justify-center gap-8 hidden menu-closed">
+  <a href="#om-oss" class="menu-link text-3xl text-white hover:text-white/60 transition-all duration-300 font-body font-medium hover:bg-white/10 px-6 py-4 rounded-md">
+    Om Oss
+  </a>
+  <a href="#meny" class="menu-link text-3xl text-white hover:text-white/60 transition-all duration-300 font-body font-medium hover:bg-white/10 px-6 py-4 rounded-md">
+    Meny
+  </a>
+  <a href="#hitta-oss" class="menu-link text-3xl text-white hover:text-white/60 transition-all duration-300 font-body font-medium hover:bg-white/10 px-6 py-4 rounded-md">
+    Hitta Oss
+  </a>
+</div>
+
+<style>
+  .nav-default {
+    margin: 1.5rem 1.5rem 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+  .nav-scrolled {
+    margin: 0;
+    border-radius: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .hamburger-line {
+    width: 1.5rem;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 300ms ease, opacity 200ms ease;
+  }
+  #hamburger-btn.menu-open .hamburger-line:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #hamburger-btn.menu-open .hamburger-line:nth-child(2) {
+    transform: scale(0);
+    opacity: 0;
+  }
+  #hamburger-btn.menu-open .hamburger-line:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile menu animations */
+  #mobile-menu {
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #mobile-menu.menu-closed {
+    opacity: 0;
+    visibility: hidden;
+  }
+  #mobile-menu.menu-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Staggered link animations */
+  .menu-link {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 200ms ease;
+  }
+  #mobile-menu.menu-open .menu-link:nth-child(1) { 
+    opacity: 1; 
+    transform: translateY(0); 
+    transition-delay: 100ms; 
+  }
+  #mobile-menu.menu-open .menu-link:nth-child(2) { 
+    opacity: 1; 
+    transform: translateY(0); 
+    transition-delay: 200ms; 
+  }
+  #mobile-menu.menu-open .menu-link:nth-child(3) { 
+    opacity: 1; 
+    transform: translateY(0); 
+    transition-delay: 300ms; 
+  }
+</style>
+
+<script>
+  // Cached DOM references
+  let navbar: HTMLElement | null;
+  let desktopNav: HTMLElement | null;
+  let hamburgerBtn: HTMLElement | null;
+  let mobileMenu: HTMLElement | null;
+  let ticking = false;
+
+  function updateNavbar(): void {
+    if (!navbar) return;
+    const isScrolled = window.scrollY > 20;
+    
+    navbar.classList.toggle('bg-neutral-900/95', isScrolled);
+    navbar.classList.toggle('backdrop-blur-sm', isScrolled);
+    navbar.classList.toggle('shadow-lg', isScrolled);
+    desktopNav?.classList.toggle('nav-scrolled', isScrolled);
+    desktopNav?.classList.toggle('nav-default', !isScrolled);
+    
+    ticking = false;
+  }
+
+  function openMenu(): void {
+    if (!hamburgerBtn || !mobileMenu) return;
+    
+    mobileMenu.classList.remove('hidden');
+    mobileMenu.classList.add('flex');
+    // Force reflow for CSS transition to work
+    void mobileMenu.offsetHeight;
+    mobileMenu.classList.remove('menu-closed');
+    mobileMenu.classList.add('menu-open');
+    
+    hamburgerBtn.classList.add('menu-open');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    hamburgerBtn.setAttribute('aria-label', 'Stäng meny');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu(): void {
+    if (!hamburgerBtn || !mobileMenu) return;
+    
+    mobileMenu.classList.remove('menu-open');
+    mobileMenu.classList.add('menu-closed');
+    hamburgerBtn.classList.remove('menu-open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    hamburgerBtn.setAttribute('aria-label', 'Öppna meny');
+    document.body.style.overflow = '';
+    
+    // Hide after transition completes
+    mobileMenu.addEventListener('transitionend', function hide() {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('flex');
+      mobileMenu?.removeEventListener('transitionend', hide);
+    }, { once: true });
+  }
+
+  function toggleMenu(): void {
+    hamburgerBtn?.classList.contains('menu-open') ? closeMenu() : openMenu();
+  }
+
+  function handleAnchorClick(e: Event): void {
+    const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+    if (href?.startsWith('#')) {
+      e.preventDefault();
+      closeMenu();
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    navbar = document.getElementById('navbar');
+    desktopNav = document.getElementById('desktop-nav');
+    hamburgerBtn = document.getElementById('hamburger-btn');
+    mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerBtn?.addEventListener('click', toggleMenu);
+    mobileMenu?.addEventListener('click', (e) => e.target === mobileMenu && closeMenu());
+    document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', handleAnchorClick));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && hamburgerBtn?.classList.contains('menu-open') && closeMenu());
+    window.addEventListener('scroll', () => !ticking && (ticking = true, requestAnimationFrame(updateNavbar)), { passive: true });
+    window.addEventListener('beforeunload', () => document.body.style.overflow = '');
+  });
+</script>

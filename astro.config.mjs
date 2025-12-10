@@ -8,6 +8,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://sospesosthlm.com',
   integrations: [sitemap()],
+  build: {
+    // Inline all CSS to eliminate render-blocking stylesheets
+    inlineStylesheets: 'always',
+  },
   image: {
     // Enable responsive images globally with constrained layout
     layout: 'constrained',

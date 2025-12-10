@@ -1,6 +1,13 @@
 ---
 // Gallery component - Image collage
 // Clean grid layout with section header
+import { Image } from 'astro:assets';
+import img1 from '@/assets/gallery/465625346_18074300683608281_1585978899008811256_n.webp';
+import img2 from '@/assets/gallery/469277128_18076608766608281_6498017909358642527_n.webp';
+import img3 from '@/assets/gallery/418269537_18044448928608281_6422876959594812420_n.webp';
+import img4 from '@/assets/gallery/469028875_18076608787608281_3997326141294755413_n.webp';
+import img5 from '@/assets/gallery/472291976_18079600228608281_4348776798519477251_n.webp';
+import img6 from '@/assets/gallery/469002718_18076607638608281_3925874698311000688_n.webp';
 ---
 
 <section id="galleri" class="p-4 sm:p-6 lg:p-8">
@@ -14,24 +21,24 @@
 		<div class="gallery-grid">
 			<!-- Row 1: Wide + Square + Square -->
 			<div class="gallery-item wide">
-				<img src="/gallery/465625346_18074300683608281_1585978899008811256_n.webp" alt="Espresso från Sospeso" width="800" height="400" loading="lazy" decoding="async" />
+				<Image src={img1} alt="Espresso från Sospeso" layout="full-width" />
 			</div>
 			<div class="gallery-item">
-				<img src="/gallery/469277128_18076608766608281_6498017909358642527_n.webp" alt="Färska croissanter" width="400" height="400" loading="lazy" decoding="async" />
+				<Image src={img2} alt="Färska croissanter" layout="full-width" />
 			</div>
 			<div class="gallery-item">
-				<img src="/gallery/418269537_18044448928608281_6422876959594812420_n.webp" alt="Kaffe och bakelse" width="400" height="400" loading="lazy" decoding="async" />
+				<Image src={img3} alt="Kaffe och bakelse" layout="full-width" />
 			</div>
 			
 			<!-- Row 2: Square + Square + Wide -->
 			<div class="gallery-item">
-				<img src="/gallery/469028875_18076608787608281_3997326141294755413_n.webp" alt="Espresso serverad" width="400" height="400" loading="lazy" decoding="async" />
+				<Image src={img4} alt="Espresso serverad" layout="full-width" />
 			</div>
 			<div class="gallery-item">
-				<img src="/gallery/472291976_18079600228608281_4348776798519477251_n.webp" alt="Barista latte art" width="400" height="400" loading="lazy" decoding="async" />
+				<Image src={img5} alt="Barista latte art" layout="full-width" />
 			</div>
 			<div class="gallery-item wide">
-				<img src="/gallery/469002718_18076607638608281_3925874698311000688_n.webp" alt="Färska smörgåsar och croissanter" width="800" height="400" loading="lazy" decoding="async" />
+				<Image src={img6} alt="Färska smörgåsar och croissanter" layout="full-width" />
 			</div>
 		</div>
 	</div>

@@ -21,17 +21,30 @@
 		</div>
 		
 		<!-- Image -->
-		<div 
-			class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-cover bg-center"
-			style="background-image: url('/hero-background.webp');"
-		></div>
+		<div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+			<img 
+				src="/hero-background.webp" 
+				alt="Sospeso café interiör" 
+				width="1200" 
+				height="900" 
+				fetchpriority="high"
+				decoding="async"
+				class="absolute inset-0 w-full h-full object-cover"
+			/>
+		</div>
 	</div>
 
 	<!-- Desktop Layout -->
-	<div 
-		class="hidden sm:block relative w-full h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)] rounded-2xl lg:rounded-3xl overflow-hidden bg-cover bg-center"
-		style="background-image: url('/hero-background.webp');"
-	>
+	<div class="hidden sm:block relative w-full h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)] rounded-2xl lg:rounded-3xl overflow-hidden">
+		<img 
+			src="/hero-background.webp" 
+			alt="Sospeso café interiör" 
+			width="1920" 
+			height="1080" 
+			fetchpriority="high"
+			decoding="async"
+			class="absolute inset-0 w-full h-full object-cover"
+		/>
 		<!-- Dark overlay for text readability -->
 		<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
 		

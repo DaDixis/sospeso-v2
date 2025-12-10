@@ -17,9 +17,18 @@ import Footer from '@/components/Footer.astro';
 <html lang="sv">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light" />
+		
+		<!-- DNS prefetch for external resources -->
+		<link rel="dns-prefetch" href="//maps.google.com" />
+		<link rel="dns-prefetch" href="//www.google.com" />
+		<link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
 		<meta name="description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm. Besök Sospeso för espresso, cornetti och äkta italiensk kaffekultur." />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href="https://sospesosthlm.com" />
 		
 		<!-- Open Graph / Social -->
 		<meta property="og:type" content="website" />
@@ -29,22 +38,36 @@ import Footer from '@/components/Footer.astro';
 		<meta property="og:image" content="https://sospesosthlm.com/hero-background.webp" />
 		<meta property="og:locale" content="sv_SE" />
 		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Sospeso - Italienskt Kaffe på Gärdet" />
+		<meta name="twitter:description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm." />
+		<meta name="twitter:image" content="https://sospesosthlm.com/hero-background.webp" />
+		
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preload" as="image" href="/hero-background.webp" fetchpriority="high" />
+		
+		<!-- Preload critical fonts (WOFF2) -->
+		<link rel="preload" href="/fonts/BowlbyOneSC-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+		
+		<!-- Preload hero image -->
+		<link rel="preload" as="image" href="/hero-background.webp" fetchpriority="high" type="image/webp" />
 				<title>Sospeso - Italienskt Kaffe på Gärdet</title>
 	</head>
 
 	<body class="min-h-screen flex flex-col scroll-smooth">
 		<Navigation />
-		<Hero />
-		<About />
-		<Gallery />
-		<Reviews />
-		<Menu />
-		<Catering />
-		<Merch />
-		<FAQ />
-		<FindUs />
+		<main>
+			<Hero />
+			<About />
+			<Gallery />
+			<Reviews />
+			<Menu />
+			<Catering />
+			<Merch />
+			<FAQ />
+			<FindUs />
+		</main>
 		<Footer />
 	</body>
 </html>

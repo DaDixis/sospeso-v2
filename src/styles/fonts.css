@@ -1,9 +1,10 @@
-/* Local font declarations */
+/* Local font declarations - WOFF2 with TTF fallback */
 
 /* Bowlby One SC - Display font */
 @font-face {
   font-family: 'Bowlby One SC';
-  src: url('/fonts/BowlbyOneSC-Regular.ttf') format('truetype');
+  src: url('/fonts/BowlbyOneSC-Regular.woff2') format('woff2'),
+       url('/fonts/BowlbyOneSC-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,7 +13,8 @@
 /* Gochi Hand - Handwritten accent font */
 @font-face {
   font-family: 'Gochi Hand';
-  src: url('/fonts/GochiHand-Regular.ttf') format('truetype');
+  src: url('/fonts/GochiHand-Regular.woff2') format('woff2'),
+       url('/fonts/GochiHand-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -21,7 +23,8 @@
 /* Inter - Variable font for body text */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  src: url('/fonts/Inter-Variable.woff2') format('woff2'),
+       url('/fonts/Inter-Variable.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

@@ -8,6 +8,12 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://sospesosthlm.com',
   integrations: [sitemap()],
+  image: {
+    // Enable responsive images globally with constrained layout
+    layout: 'constrained',
+    // Add CSS for responsive image resizing
+    responsiveStyles: true,
+  },
   vite: {
     plugins: [
       tailwindcss(),

@@ -1,6 +1,13 @@
 ---
 // Merch component - Branded merchandise section
 // Displays cafe merchandise in an elegant card grid
+import { Image } from 'astro:assets';
+
+// Import merch images
+import hoodieImg from '@/assets/plagg/hoodie.webp';
+import tshirtSvartImg from '@/assets/plagg/tshirt-svart.webp';
+import tshirtVitImg from '@/assets/plagg/tshirt-vit.webp';
+import mossaImg from '@/assets/plagg/Mössa.webp';
 ---
 
 <section id="merch" class="p-4 sm:p-6 lg:p-8 scroll-mt-8">
@@ -19,15 +26,13 @@
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
 			
 			<!-- Hoodie -->
-			<article class="merch-card group" data-product="Hoodie" data-price="799 kr" data-image="/plagg/hoodie.webp">
+			<article class="merch-card group" data-product="Hoodie" data-price="799 kr" data-image={hoodieImg.src}>
 				<div class="merch-image-wrapper">
-					<img 
-						src="/plagg/hoodie.webp" 
+					<Image 
+						src={hoodieImg}
 						alt="Sospeso Hoodie - Svart" 
-						width="400" 
-						height="400" 
-						loading="lazy"
-						decoding="async"
+						width={400}
+						height={400}
 						class="merch-image"
 					/>
 				</div>
@@ -41,15 +46,13 @@
 			</article>
 			
 			<!-- T-shirt Svart -->
-			<article class="merch-card group" data-product="Svart T-shirt" data-price="499 kr" data-image="/plagg/tshirt-svart.webp">
+			<article class="merch-card group" data-product="Svart T-shirt" data-price="499 kr" data-image={tshirtSvartImg.src}>
 				<div class="merch-image-wrapper">
-					<img 
-						src="/plagg/tshirt-svart.webp" 
+					<Image 
+						src={tshirtSvartImg}
 						alt="Sospeso Svart T-shirt" 
-						width="400" 
-						height="400" 
-						loading="lazy"
-						decoding="async"
+						width={400}
+						height={400}
 						class="merch-image"
 					/>
 				</div>
@@ -63,15 +66,13 @@
 			</article>
 			
 			<!-- T-shirt Vit -->
-			<article class="merch-card group" data-product="Vit T-shirt" data-price="499 kr" data-image="/plagg/tshirt-vit.webp">
+			<article class="merch-card group" data-product="Vit T-shirt" data-price="499 kr" data-image={tshirtVitImg.src}>
 				<div class="merch-image-wrapper">
-					<img 
-						src="/plagg/tshirt-vit.webp" 
+					<Image 
+						src={tshirtVitImg}
 						alt="Sospeso Vit T-shirt" 
-						width="400" 
-						height="400" 
-						loading="lazy"
-						decoding="async"
+						width={400}
+						height={400}
 						class="merch-image"
 					/>
 				</div>
@@ -85,15 +86,13 @@
 			</article>
 			
 			<!-- Mössa -->
-			<article class="merch-card group" data-product="Mössa" data-price="399 kr" data-image="/plagg/Mössa.webp">
+			<article class="merch-card group" data-product="Mössa" data-price="399 kr" data-image={mossaImg.src}>
 				<div class="merch-image-wrapper">
-					<img 
-						src="/plagg/Mössa.webp" 
+					<Image 
+						src={mossaImg}
 						alt="Sospeso Mössa" 
-						width="400" 
-						height="400" 
-						loading="lazy"
-						decoding="async"
+						width={400}
+						height={400}
 						class="merch-image"
 					/>
 				</div>

@@ -1,7 +1,9 @@
 ---
 // About component - "Om Oss" section
 // Styled to match FindUs section
+import { Image } from 'astro:assets';
 import { Card, CardContent } from '@/components/starwind/card';
+import omOssImage from '@/assets/om-oss.webp';
 ---
 
 <section id="om-oss" class="p-4 sm:p-6 lg:p-8 scroll-mt-8">
@@ -10,14 +12,12 @@ import { Card, CardContent } from '@/components/starwind/card';
 			<div class="grid grid-cols-1 md:grid-cols-2">
 				<!-- Image -->
 				<div class="aspect-[4/3] md:aspect-[3/4] lg:aspect-auto">
-					<img 
-						src="/om-oss.webp" 
+					<Image 
+						src={omOssImage}
 						alt="Kaffe och vår lilla maskot på Sospeso" 
-						width="600"
-						height="800"
+						width={600}
+						height={800}
 						class="w-full h-full object-cover object-top"
-						loading="lazy"
-						decoding="async"
 					/>
 				</div>
 				

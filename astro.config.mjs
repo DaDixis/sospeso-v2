@@ -21,16 +21,6 @@ export default defineConfig({
   vite: {
     plugins: [
       tailwindcss(),
-      // Generate gzip compressed files for production
-      compression({
-        algorithm: 'gzip',
-        ext: '.gz',
-      }),
-      // Generate brotli compressed files for production
-      compression({
-        algorithm: 'brotliCompress',
-        ext: '.br',
-      }),
     ],
     server: {
       host: true,

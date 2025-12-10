@@ -24,13 +24,14 @@ import heroImage from '@/assets/hero-background.webp';
 		
 		<!-- Image -->
 		<div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
-			<Image 
-				src={heroImage}
+			<img 
+				src={heroImage.src}
 				alt="Sospeso café interiör" 
-				width={800}
-				height={600}
-				layout="constrained"
-				priority
+				width={heroImage.width}
+				height={heroImage.height}
+				loading="eager"
+				decoding="sync"
+				fetchpriority="high"
 				class="absolute inset-0 w-full h-full object-cover"
 			/>
 		</div>
@@ -38,11 +39,14 @@ import heroImage from '@/assets/hero-background.webp';
 
 	<!-- Desktop Layout -->
 	<div class="hidden sm:block relative w-full h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)] rounded-2xl lg:rounded-3xl overflow-hidden">
-		<Image 
-			src={heroImage}
+		<img 
+			src={heroImage.src}
 			alt="Sospeso café interiör" 
-			layout="full-width"
-			priority
+			width={heroImage.width}
+			height={heroImage.height}
+			loading="eager"
+			decoding="sync"
+			fetchpriority="high"
 			class="absolute inset-0 w-full h-full object-cover"
 		/>
 		<!-- Dark overlay for text readability -->

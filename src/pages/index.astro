@@ -1,8 +1,6 @@
 ---
 import '@/styles/starwind.css';
 import '@/styles/fonts.css';
-import { getImage } from 'astro:assets';
-import heroImage from '@/assets/hero-background.webp';
 import Navigation from '@/components/Navigation.astro';
 import Hero from '@/components/Hero.astro';
 import About from '@/components/About.astro';
@@ -14,9 +12,6 @@ import Merch from '@/components/Merch.astro';
 import FindUs from '@/components/FindUs.astro';
 import FAQ from '@/components/FAQ.astro';
 import Footer from '@/components/Footer.astro';
-
-// Pre-generate hero image for preload
-const optimizedHero = await getImage({ src: heroImage, width: 1920, height: 1080, quality: 85 });
 ---
 
 <html lang="sv">
@@ -25,9 +20,10 @@ const optimizedHero = await getImage({ src: heroImage, width: 1920, height: 1080
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="color-scheme" content="light" />
 		
-		<!-- DNS prefetch for external resources (loaded lazily via iframe) -->
+		<!-- DNS prefetch for external resources -->
 		<link rel="dns-prefetch" href="//maps.google.com" />
 		<link rel="dns-prefetch" href="//www.google.com" />
+		<link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
 		<meta name="description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm. Besök Sospeso för espresso, cornetti och äkta italiensk kaffekultur." />
 		<meta name="generator" content={Astro.generator} />
 		
@@ -50,13 +46,12 @@ const optimizedHero = await getImage({ src: heroImage, width: 1920, height: 1080
 		
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		
-		<!-- Preload LCP image -->
-		<link rel="preload" as="image" href={optimizedHero.src} fetchpriority="high" />
-		
 		<!-- Preload critical fonts (WOFF2) -->
 		<link rel="preload" href="/fonts/BowlbyOneSC-Regular.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
 		
+		<!-- Preload hero image -->
+		<link rel="preload" as="image" href="/hero-background.webp" fetchpriority="high" type="image/webp" />
 				<title>Sospeso - Italienskt Kaffe på Gärdet</title>
 	</head>
 

@@ -10,14 +10,14 @@
   font-display: swap;
 }
 
-/* Gochi Hand - Handwritten accent font (not critical for LCP) */
+/* Gochi Hand - Handwritten accent font */
 @font-face {
   font-family: 'Gochi Hand';
   src: url('/fonts/GochiHand-Regular.woff2') format('woff2'),
        url('/fonts/GochiHand-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 /* Inter - Variable font for body text */

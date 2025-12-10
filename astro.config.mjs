@@ -8,9 +8,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://sospesosthlm.com',
   integrations: [sitemap()],
-  image: {
-    experimentalLayout: 'responsive',
-  },
   vite: {
     plugins: [
       tailwindcss(),

@@ -20,6 +20,14 @@ import Footer from '@/components/Footer.astro';
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="color-scheme" content="light" />
 		
+		<!-- Additional SEO meta tags -->
+		<meta name="author" content="Sospeso Café" />
+		<meta name="keywords" content="italienskt kaffe, espresso, café, gärdet, stockholm, cornetto, barista, kaffekultur, sospeso" />
+		<meta name="geo.region" content="SE-AB" />
+		<meta name="geo.placename" content="Stockholm" />
+		<meta name="geo.position" content="59.3365;18.0994" />
+		<meta name="ICBM" content="59.3365, 18.0994" />
+		
 		<!-- DNS prefetch removed - maps not loaded on initial page load -->
 		<meta name="description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm. Besök Sospeso för espresso, cornetti och äkta italiensk kaffekultur." />
 		<meta name="generator" content={Astro.generator} />
@@ -40,6 +48,43 @@ import Footer from '@/components/Footer.astro';
 		<meta name="twitter:title" content="Sospeso - Italienskt Kaffe på Gärdet" />
 		<meta name="twitter:description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm." />
 		<meta name="twitter:image" content="https://sospesosthlm.com/hero-background.webp" />
+		
+		<!-- Structured Data for LocalBusiness -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Sospeso",
+			"description": "Autentiskt italienskt kaffe på Gärdet, Stockholm. Espresso, cornetti och äkta kaffekultur.",
+			"url": "https://sospesosthlm.com",
+			"telephone": "+46-8-12345678",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Gärdet",
+				"addressLocality": "Stockholm",
+				"addressRegion": "Stockholm",
+				"postalCode": "11521",
+				"addressCountry": "SE"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "59.3365",
+				"longitude": "18.0994"
+			},
+			"openingHours": [
+				"Mo Closed",
+				"Tu-Fr 08:00-16:00",
+				"Sa-Su 09:00-15:00"
+			],
+			"sameAs": [
+				"https://www.facebook.com/sospesosthlm",
+				"https://www.instagram.com/sospesosthlm"
+			],
+			"menu": "https://sospesosthlm.com/meny",
+			"image": "https://sospesosthlm.com/hero-background.webp",
+			"priceRange": "$$"
+		}
+		</script>
 		
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		

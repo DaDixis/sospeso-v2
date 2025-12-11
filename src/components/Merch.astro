@@ -2,6 +2,8 @@
 // Merch component - Branded merchandise section
 // Displays cafe merchandise in an elegant card grid
 import { Image } from 'astro:assets';
+import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import SectionHeader from '@/components/shared/SectionHeader.astro';
 
 // Import merch images
 import hoodieImg from '@/assets/plagg/hoodie.webp';
@@ -10,13 +12,10 @@ import tshirtVitImg from '@/assets/plagg/tshirt-vit.webp';
 import mossaImg from '@/assets/plagg/Mössa.webp';
 ---
 
-<section id="merch" class="p-4 sm:p-6 lg:p-8 scroll-mt-8">
-	<div class="max-w-6xl mx-auto">
+<SectionWrapper id="merch">
 		<!-- Section Header -->
 		<div class="text-center mb-8 sm:mb-10">
-			<h2 class="text-3xl sm:text-4xl tracking-tight text-foreground mb-3 font-display">
-				Merch
-			</h2>
+			<SectionHeader title="Merch" spacing="mb-3" centered={true} />
 			<p class="text-base text-muted-foreground max-w-xl mx-auto font-body">
 				Ta med en bit av Sospeso hem. Vår merch är designad för dem som uppskattar det autentiska.
 			</p>
@@ -129,7 +128,7 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 						<line x1="6" y1="6" x2="18" y2="18"></line>
 					</svg>
 				</button>
-				<img id="lightbox-image" src="" alt="" class="lightbox-image" />
+				<img id="lightbox-image" src="" alt="Förstorad produktbild" class="lightbox-image" />
 				<div class="lightbox-info">
 					<h3 id="lightbox-title" class="lightbox-title"></h3>
 					<span id="lightbox-price" class="lightbox-price"></span>
@@ -148,7 +147,7 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 		<p class="text-center text-sm text-muted-foreground mt-6 sm:mt-8 font-body">
 			Finns att köpa i vårt kafé på Värtavägen 31.
 		</p>
-	</div>
+	</SectionWrapper>
 </section>
 
 <style>

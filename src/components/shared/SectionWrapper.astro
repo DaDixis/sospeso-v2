@@ -1,0 +1,19 @@
+---
+// SectionWrapper component - Consistent section layout
+// Props:
+// - id: Section ID for navigation
+// - maxWidth: Maximum width container class (default: max-w-6xl)
+// - children: Section content
+interface Props {
+	id: string;
+	maxWidth?: string;
+}
+
+const { id, maxWidth = "max-w-6xl" } = Astro.props;
+---
+
+<section id={id} class="p-4 sm:p-6 lg:p-8 scroll-mt-8">
+	<div class={`${maxWidth} mx-auto`}>
+		<slot />
+	</div>
+</section>

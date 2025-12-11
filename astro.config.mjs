@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sospesosthlm.com',
+  site: 'https://sospeso-v2.pages.dev', // Updated for testing
   integrations: [sitemap()],
   build: {
     // Inline all CSS to eliminate render-blocking stylesheets

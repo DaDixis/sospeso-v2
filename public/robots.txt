@@ -1,8 +1,8 @@
 # Robots.txt for Sospeso
-# https://sospesosthlm.com
+# https://sospeso-v2.pages.dev
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://sospesosthlm.com/sitemap-index.xml
+# Sitemap location (updated for test domain)
+Sitemap: https://sospeso-v2.pages.dev/sitemap-index.xml

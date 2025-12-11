@@ -2,6 +2,8 @@
 // Gallery component - Image collage
 // Clean grid layout with section header
 import { Image } from 'astro:assets';
+import SectionWrapper from '@/components/shared/SectionWrapper.astro';
+import SectionHeader from '@/components/shared/SectionHeader.astro';
 
 // Import gallery images
 import gallery1 from '@/assets/gallery/465625346_18074300683608281_1585978899008811256_n.webp';
@@ -12,12 +14,8 @@ import gallery5 from '@/assets/gallery/472291976_18079600228608281_4348776798519
 import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311000688_n.webp';
 ---
 
-<section id="galleri" class="p-4 sm:p-6 lg:p-8">
-	<div class="max-w-6xl mx-auto">
-		<!-- Section Header -->
-		<h2 class="text-3xl sm:text-4xl tracking-tight text-foreground mb-6 sm:mb-8 text-center font-display">
-			Från Vårt Café
-		</h2>
+<SectionWrapper id="galleri">
+		<SectionHeader title="Från Vårt Café" centered={true} />
 		
 		<!-- Gallery Grid - 2 rows, balanced layout -->
 		<div class="gallery-grid">
@@ -43,7 +41,7 @@ import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311
 				<Image src={gallery6} alt="Färska smörgåsar och croissanter" width={560} height={280} sizes="(min-width: 768px) 50vw, 100vw" widths={[217, 434, 560]} />
 			</div>
 		</div>
-	</div>
+	</SectionWrapper>
 </section>
 
 <style>

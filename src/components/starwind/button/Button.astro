@@ -7,6 +7,7 @@ interface Props
     Omit<HTMLAttributes<"a">, "type">,
     VariantProps<typeof button> {
   class?: string;
+  href?: string;
 }
 
 const { variant, size, class: className, ...rest } = Astro.props;

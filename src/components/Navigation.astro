@@ -188,7 +188,7 @@ import logo from '@/assets/logo.svg';
     }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function initNavigation(): void {
     navbar = document.getElementById('navbar');
     desktopNav = document.getElementById('desktop-nav');
     hamburgerBtn = document.getElementById('hamburger-btn');
@@ -198,7 +198,21 @@ import logo from '@/assets/logo.svg';
     mobileMenu?.addEventListener('click', (e) => e.target === mobileMenu && closeMenu());
     document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', handleAnchorClick));
     document.addEventListener('keydown', (e) => e.key === 'Escape' && hamburgerBtn?.classList.contains('menu-open') && closeMenu());
-    window.addEventListener('scroll', () => !ticking && (ticking = true, requestAnimationFrame(updateNavbar)), { passive: true });
     window.addEventListener('beforeunload', () => document.body.style.overflow = '');
+    
+    // Defer scroll listener to reduce initial main-thread blocking
+    requestIdleCallback(() => {
+      window.addEventListener('scroll', () => !ticking && (ticking = true, requestAnimationFrame(updateNavbar)), { passive: true });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Use requestIdleCallback to defer non-critical navigation setup
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initNavigation);
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      setTimeout(initNavigation, 0);
+    }
   });
 </script>

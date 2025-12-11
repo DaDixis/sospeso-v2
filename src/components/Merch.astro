@@ -28,13 +28,12 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 			<!-- Hoodie -->
 			<article class="merch-card group" data-product="Hoodie" data-price="799 kr" data-image={hoodieImg.src}>
 				<div class="merch-image-wrapper">
-					<Image 
-						src={hoodieImg}
+					<img 
+						src={hoodieImg.src}
 						alt="Sospeso Hoodie - Svart" 
-						width={300}
-						height={300}
-						sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-						widths={[250, 300]}
+						width={hoodieImg.width}
+						height={hoodieImg.height}
+						loading="lazy"
 						class="merch-image"
 					/>
 				</div>
@@ -50,13 +49,12 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 			<!-- T-shirt Svart -->
 			<article class="merch-card group" data-product="Svart T-shirt" data-price="499 kr" data-image={tshirtSvartImg.src}>
 				<div class="merch-image-wrapper">
-					<Image 
-						src={tshirtSvartImg}
+					<img 
+						src={tshirtSvartImg.src}
 						alt="Sospeso Svart T-shirt" 
-						width={300}
-						height={300}
-						sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-						widths={[250, 300]}
+						width={tshirtSvartImg.width}
+						height={tshirtSvartImg.height}
+						loading="lazy"
 						class="merch-image"
 					/>
 				</div>
@@ -72,13 +70,12 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 			<!-- T-shirt Vit -->
 			<article class="merch-card group" data-product="Vit T-shirt" data-price="499 kr" data-image={tshirtVitImg.src}>
 				<div class="merch-image-wrapper">
-					<Image 
-						src={tshirtVitImg}
+					<img 
+						src={tshirtVitImg.src}
 						alt="Sospeso Vit T-shirt" 
-						width={300}
-						height={300}
-						sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-						widths={[250, 300]}
+						width={tshirtVitImg.width}
+						height={tshirtVitImg.height}
+						loading="lazy"
 						class="merch-image"
 					/>
 				</div>
@@ -94,13 +91,12 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 			<!-- Mössa -->
 			<article class="merch-card group" data-product="Mössa" data-price="399 kr" data-image={mossaImg.src}>
 				<div class="merch-image-wrapper">
-					<Image 
-						src={mossaImg}
+					<img 
+						src={mossaImg.src}
 						alt="Sospeso Mössa" 
-						width={300}
-						height={300}
-						sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-						widths={[250, 300]}
+						width={mossaImg.width}
+						height={mossaImg.height}
+						loading="lazy"
 						class="merch-image"
 					/>
 				</div>
@@ -370,75 +366,85 @@ import mossaImg from '@/assets/plagg/Mössa.webp';
 </style>
 
 <script>
-	const lightbox = document.getElementById('merch-lightbox');
-	const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
-	const lightboxTitle = document.getElementById('lightbox-title');
-	const lightboxPrice = document.getElementById('lightbox-price');
-	const lightboxBackdrop = lightbox?.querySelector('.lightbox-backdrop');
-	const lightboxClose = lightbox?.querySelector('.lightbox-close');
-	const lightboxPrev = lightbox?.querySelector('.lightbox-prev');
-	const lightboxNext = lightbox?.querySelector('.lightbox-next');
-	const cards = document.querySelectorAll('.merch-card');
-	
-	let currentIndex = 0;
-
-	// Move lightbox to body to ensure it's above all other content
-	if (lightbox) {
-		document.body.appendChild(lightbox);
-	}
-
-	function showProduct(index: number) {
-		const card = cards[index];
-		if (!card) return;
+	function initMerchLightbox() {
+		const lightbox = document.getElementById('merch-lightbox');
+		const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+		const lightboxTitle = document.getElementById('lightbox-title');
+		const lightboxPrice = document.getElementById('lightbox-price');
+		const lightboxBackdrop = lightbox?.querySelector('.lightbox-backdrop');
+		const lightboxClose = lightbox?.querySelector('.lightbox-close');
+		const lightboxPrev = lightbox?.querySelector('.lightbox-prev');
+		const lightboxNext = lightbox?.querySelector('.lightbox-next');
+		const cards = document.querySelectorAll('.merch-card');
 		
-		const image = card.getAttribute('data-image');
-		const product = card.getAttribute('data-product');
-		const price = card.getAttribute('data-price');
-		
-		if (lightboxImage && image) lightboxImage.src = image;
-		if (lightboxImage && product) lightboxImage.alt = product;
-		if (lightboxTitle && product) lightboxTitle.textContent = product;
-		if (lightboxPrice && price) lightboxPrice.textContent = price;
-		
-		currentIndex = index;
+		let currentIndex = 0;
+
+		// Move lightbox to body to ensure it's above all other content
+		if (lightbox) {
+			document.body.appendChild(lightbox);
+		}
+
+		function showProduct(index: number) {
+			const card = cards[index];
+			if (!card) return;
+			
+			const image = card.getAttribute('data-image');
+			const product = card.getAttribute('data-product');
+			const price = card.getAttribute('data-price');
+			
+			if (lightboxImage && image) lightboxImage.src = image;
+			if (lightboxImage && product) lightboxImage.alt = product;
+			if (lightboxTitle && product) lightboxTitle.textContent = product;
+			if (lightboxPrice && price) lightboxPrice.textContent = price;
+			
+			currentIndex = index;
+		}
+
+		function openLightbox(index: number) {
+			showProduct(index);
+			lightbox?.classList.add('active');
+			document.body.style.overflow = 'hidden';
+		}
+
+		function closeLightbox() {
+			lightbox?.classList.remove('active');
+			document.body.style.overflow = '';
+		}
+
+		function showPrev() {
+			const newIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
+			showProduct(newIndex);
+		}
+
+		function showNext() {
+			const newIndex = currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
+			showProduct(newIndex);
+		}
+
+		cards.forEach((card, index) => {
+			card.addEventListener('click', () => openLightbox(index));
+			(card as HTMLElement).style.cursor = 'pointer';
+		});
+
+		lightboxBackdrop?.addEventListener('click', closeLightbox);
+		lightboxClose?.addEventListener('click', closeLightbox);
+		lightboxPrev?.addEventListener('click', showPrev);
+		lightboxNext?.addEventListener('click', showNext);
+
+		document.addEventListener('keydown', (e) => {
+			if (!lightbox?.classList.contains('active')) return;
+			
+			if (e.key === 'Escape') closeLightbox();
+			if (e.key === 'ArrowLeft') showPrev();
+			if (e.key === 'ArrowRight') showNext();
+		});
 	}
 
-	function openLightbox(index: number) {
-		showProduct(index);
-		lightbox?.classList.add('active');
-		document.body.style.overflow = 'hidden';
+	// Defer merch lightbox initialization to reduce main-thread blocking
+	if ('requestIdleCallback' in window) {
+		requestIdleCallback(initMerchLightbox);
+	} else {
+		// Fallback for browsers that don't support requestIdleCallback
+		setTimeout(initMerchLightbox, 100);
 	}
-
-	function closeLightbox() {
-		lightbox?.classList.remove('active');
-		document.body.style.overflow = '';
-	}
-
-	function showPrev() {
-		const newIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
-		showProduct(newIndex);
-	}
-
-	function showNext() {
-		const newIndex = currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
-		showProduct(newIndex);
-	}
-
-	cards.forEach((card, index) => {
-		card.addEventListener('click', () => openLightbox(index));
-		(card as HTMLElement).style.cursor = 'pointer';
-	});
-
-	lightboxBackdrop?.addEventListener('click', closeLightbox);
-	lightboxClose?.addEventListener('click', closeLightbox);
-	lightboxPrev?.addEventListener('click', showPrev);
-	lightboxNext?.addEventListener('click', showNext);
-
-	document.addEventListener('keydown', (e) => {
-		if (!lightbox?.classList.contains('active')) return;
-		
-		if (e.key === 'Escape') closeLightbox();
-		if (e.key === 'ArrowLeft') showPrev();
-		if (e.key === 'ArrowRight') showNext();
-	});
 </script>

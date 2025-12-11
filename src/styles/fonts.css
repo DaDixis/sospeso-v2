@@ -1,4 +1,4 @@
-/* Critical fonts - WOFF2 with TTF fallback */
+/* All fonts - simple loading without preloading */
 
 /* Bowlby One SC - Display font */
 @font-face {
@@ -18,4 +18,14 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+}
+
+/* Gochi Hand - Decorative font for Menu section */
+@font-face {
+  font-family: 'Gochi Hand';
+  src: url('/fonts/GochiHand-Regular.woff2') format('woff2'),
+       url('/fonts/GochiHand-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
 }

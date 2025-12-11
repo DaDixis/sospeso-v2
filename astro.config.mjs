@@ -1,7 +1,6 @@
 // @ts-check
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import compression from 'vite-plugin-compression';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config

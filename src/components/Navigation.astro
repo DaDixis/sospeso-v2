@@ -194,13 +194,6 @@ import logo from '@/assets/logo.svg';
     hamburgerBtn = document.getElementById('hamburger-btn');
     mobileMenu = document.getElementById('mobile-menu');
 
-    console.log('Navigation elements found:', {
-      navbar: !!navbar,
-      desktopNav: !!desktopNav,
-      hamburgerBtn: !!hamburgerBtn,
-      mobileMenu: !!mobileMenu
-    });
-
     hamburgerBtn?.addEventListener('click', toggleMenu);
     mobileMenu?.addEventListener('click', (e) => e.target === mobileMenu && closeMenu());
     document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', handleAnchorClick));

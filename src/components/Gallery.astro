@@ -6,12 +6,12 @@ import SectionWrapper from '@/components/shared/SectionWrapper.astro';
 import SectionHeader from '@/components/shared/SectionHeader.astro';
 
 // Import gallery images
-import gallery1 from '@/assets/gallery/465625346_18074300683608281_1585978899008811256_n.webp';
+import gallery1 from '@/assets/gallery/A4778BBE-F366-4688-AFCF-75603EDD5209.webp';
 import gallery2 from '@/assets/gallery/469277128_18076608766608281_6498017909358642527_n.webp';
-import gallery3 from '@/assets/gallery/418269537_18044448928608281_6422876959594812420_n.webp';
+import gallery3 from '@/assets/gallery/IMG_0162.webp';
 import gallery4 from '@/assets/gallery/469028875_18076608787608281_3997326141294755413_n.webp';
-import gallery5 from '@/assets/gallery/472291976_18079600228608281_4348776798519477251_n.webp';
-import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311000688_n.webp';
+import gallery5 from '@/assets/gallery/IMG_0267.webp';
+import gallery6 from '@/assets/gallery/IMG_0313.webp';
 ---
 
 <SectionWrapper id="galleri">
@@ -20,29 +20,28 @@ import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311
 		<!-- Gallery Grid - 2 rows, balanced layout -->
 		<div class="gallery-grid">
 			<!-- Row 1: Wide + Square + Square -->
-			<div class="gallery-item wide">
-				<Image src={gallery1} alt="Espresso från Sospeso" width={560} height={280} sizes="(min-width: 768px) 50vw, 100vw" widths={[217, 434, 560]} />
+			<div class="gallery-item">
+				<Image src={gallery1} alt="Kaffe och bakverk" width={280} height={350} sizes="(min-width: 768px) 33vw, 50vw" widths={[213, 280]} />
 			</div>
 			<div class="gallery-item">
-				<Image src={gallery2} alt="Färska croissanter" width={280} height={280} sizes="(min-width: 768px) 25vw, 50vw" widths={[213, 280]} />
+				<Image src={gallery2} alt="Färska croissanter" width={280} height={350} sizes="(min-width: 768px) 33vw, 50vw" widths={[213, 280]} />
 			</div>
 			<div class="gallery-item">
-				<Image src={gallery3} alt="Kaffe och bakelse" width={280} height={280} sizes="(min-width: 768px) 25vw, 50vw" widths={[213, 280]} />
+				<Image src={gallery3} alt="Kaffe och croissant" width={280} height={350} sizes="(min-width: 768px) 33vw, 50vw" widths={[213, 280]} />
 			</div>
 			
 			<!-- Row 2: Square + Square + Wide -->
 			<div class="gallery-item">
-				<Image src={gallery4} alt="Espresso serverad" width={280} height={280} sizes="(min-width: 768px) 25vw, 50vw" widths={[213, 280]} />
+				<Image src={gallery4} alt="Espresso i handen" width={280} height={350} sizes="(min-width: 768px) 33vw, 50vw" widths={[213, 280]} />
 			</div>
 			<div class="gallery-item">
-				<Image src={gallery5} alt="Barista latte art" width={280} height={280} sizes="(min-width: 768px) 25vw, 50vw" widths={[213, 280]} />
+				<Image src={gallery5} alt="Bakverk" width={280} height={350} sizes="(min-width: 768px) 33vw, 50vw" widths={[213, 280]} />
 			</div>
-			<div class="gallery-item wide">
-				<Image src={gallery6} alt="Färska smörgåsar och croissanter" width={560} height={280} sizes="(min-width: 768px) 50vw, 100vw" widths={[217, 434, 560]} />
+			<div class="gallery-item">
+				<Image src={gallery6} alt="Bakelser" width={280} height={350} sizes="(min-width: 768px) 33vw, 50vw" widths={[213, 280]} />
 			</div>
 		</div>
 	</SectionWrapper>
-</section>
 
 <style>
 	.gallery-grid {
@@ -53,7 +52,7 @@ import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311
 	
 	@media (min-width: 768px) {
 		.gallery-grid {
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(3, 1fr);
 			gap: 0.75rem;
 		}
 	}
@@ -68,7 +67,7 @@ import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311
 		position: relative;
 		overflow: hidden;
 		border-radius: 0.75rem;
-		aspect-ratio: 1;
+		aspect-ratio: 4/5;
 	}
 	
 	.gallery-item img {
@@ -80,12 +79,6 @@ import gallery6 from '@/assets/gallery/469002718_18076607638608281_3925874698311
 	
 	.gallery-item:hover img {
 		transform: scale(1.05);
-	}
-	
-	/* Wide item - spans 2 columns */
-	.gallery-item.wide {
-		grid-column: span 2;
-		aspect-ratio: 2/1;
 	}
 	
 	@media (min-width: 640px) {

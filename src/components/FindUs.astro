@@ -32,7 +32,7 @@ import { Button } from '@/components/starwind/button';
 						
 						<!-- Phone -->
 						<a 
-							href="tel:+46736221611" 
+							href="tel:+468291139" 
 							class="flex items-center gap-3 group"
 						>
 							<div class="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center group-hover:bg-foreground/20 transition-colors">
@@ -41,7 +41,7 @@ import { Button } from '@/components/starwind/button';
 								</svg>
 							</div>
 							<span class="text-base text-foreground group-hover:text-foreground/70 transition-colors">
-								+46 73 622 16 11
+								08-291139
 							</span>
 						</a>
 						
@@ -100,7 +100,7 @@ import { Button } from '@/components/starwind/button';
 						height="100%" 
 						style="border:0;" 
 						allowfullscreen="" 
-						loading="lazy"
+						loading="eager"
 						referrerpolicy="no-referrer-when-downgrade"
 						title="Sospeso location map"
 						class="w-full h-full min-h-[300px] opacity-0 transition-opacity duration-300"
@@ -113,11 +113,25 @@ import { Button } from '@/components/starwind/button';
 </section>
 
 <script>
+	let hasLoadedMap = false;
+
+	function shouldPreloadMap() {
+		const anyNavigator = navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } };
+		const connection = anyNavigator.connection;
+		if (connection?.saveData) return false;
+		const effectiveType = connection?.effectiveType;
+		if (effectiveType && /2g/i.test(effectiveType)) return false;
+		return true;
+	}
+
 	function loadMap() {
 		const iframe = document.getElementById('map-iframe') as HTMLIFrameElement;
 		const placeholder = document.getElementById('map-placeholder');
 		
+		if (hasLoadedMap) return;
 		if (iframe && !iframe.src && iframe.dataset.src) {
+			hasLoadedMap = true;
+			iframe.loading = 'eager';
 			iframe.src = iframe.dataset.src;
 			iframe.addEventListener('load', () => {
 				iframe.classList.remove('opacity-0');
@@ -126,6 +140,15 @@ import { Button } from '@/components/starwind/button';
 					placeholder.style.display = 'none';
 				}
 			}, { once: true });
+		}
+	}
+
+	function schedulePreload() {
+		if (!shouldPreloadMap()) return;
+		if ('requestIdleCallback' in window) {
+			requestIdleCallback(() => loadMap(), { timeout: 1500 });
+		} else {
+			setTimeout(loadMap, 400);
 		}
 	}
 
@@ -143,7 +166,13 @@ import { Button } from '@/components/starwind/button';
 					observer.disconnect();
 				}
 			});
-		}, { rootMargin: '100px' });
+		}, { rootMargin: '900px 0px' });
 		observer.observe(mapContainer);
 	}
+
+	// Start preloading shortly after the user shows intent (scroll/touch/move)
+	const onFirstIntent = () => schedulePreload();
+	window.addEventListener('scroll', onFirstIntent, { once: true, passive: true });
+	window.addEventListener('touchstart', onFirstIntent, { once: true, passive: true });
+	window.addEventListener('mousemove', onFirstIntent, { once: true, passive: true });
 </script>

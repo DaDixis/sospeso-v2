@@ -2,7 +2,8 @@
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
-type Props = HTMLAttributes<"div"> & {
+interface Props extends HTMLAttributes<"div"> {
+  class?: string;
   /**
    * The type of accordion.  If "single", only one item can be open at a time.
    */
@@ -11,7 +12,7 @@ type Props = HTMLAttributes<"div"> & {
    * The value of the item that should be open by default
    */
   defaultValue?: string;
-};
+}
 
 export const accordion = tv({ base: "starwind-accordion" });
 

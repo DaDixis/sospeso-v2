@@ -1,7 +1,6 @@
 ---
 // About component - "Om Oss" section
 // Styled to match FindUs section
-import { Image } from 'astro:assets';
 import { Card, CardContent } from '@/components/starwind/card';
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
 import SectionHeader from '@/components/shared/SectionHeader.astro';
@@ -10,17 +9,17 @@ import omOssImage from '@/assets/om-oss.webp';
 
 <SectionWrapper id="om-oss">
 		<Card class="overflow-hidden">
-			<div class="grid grid-cols-1 md:grid-cols-2">
+			<div class="grid grid-cols-1 md:grid-cols-2 md:items-start">
 				<!-- Image -->
-				<div class="aspect-[4/3] md:aspect-[3/4] lg:aspect-auto">
-					<Image 
-						src={omOssImage}
+				<div class="aspect-[4/3]">
+					<img 
+						src={omOssImage.src}
 						alt="Kaffe och vår lilla maskot på Sospeso" 
-						width={500}
-						height={667}
-						sizes="(min-width: 768px) 50vw, 100vw"
-						widths={[432, 576, 500]}
-						class="w-full h-full object-cover object-top"
+						width={omOssImage.width}
+						height={omOssImage.height}
+						loading="lazy"
+						decoding="async"
+						class="w-full h-full object-cover object-bottom"
 					/>
 				</div>
 				
@@ -30,16 +29,7 @@ import omOssImage from '@/assets/om-oss.webp';
 					
 					<div class="space-y-4 text-base text-muted-foreground leading-relaxed font-body">
 						<p>
-							Sospeso är ditt lokala kafé i hjärtat av Gärdet. Vårt namn är inspirerat av den vackra traditionen <em>"caffè sospeso"</em> – där någon betalar för en extra kaffe till en främling som senare kan komma och hämta den. Det är en gest av generositet och gemenskap som vi vill föra vidare i vår stadsdel.
-						</p>
-						<p>
-							Här handlar allt om äkta kafékultur — noggrant bryggd kaffe, färska bakverk och tid för det lilla samtalet. Vi tror på kvalitet före kvantitet. Varje kopp är gjord med passion och precision, för att du ska få den bästa upplevelsen.
-						</p>
-						<p>
-							Vår mysiga lilla hörna vid Tessinparken är perfekt för att snabbt svänga förbi och hämta din favoritkaffe — kanske på väg till en promenad i parken eller på morgonens pendling. Vi har blivit en naturlig del av kvarteret, där grannar, hundägare och kaffälskare möts.
-						</p>
-						<p class="text-foreground font-medium font-body">
-							Välkommen in. Hämta en kaffe, välj bland våra bakverk och njut — i parken eller på språng.
+							Välkommen in på en espresso, precis som i Italien. Här dricks kaffet snabbt, ofta på stående fot, med ett leende över bardisken. Espresson är liten, stark och självklar – un caffè, per favore. Till det bjuder vi på bakverk från hela Italien, från norr till söder, lika delar tradition och kärlek. Vi är kanske små till ytan, men här är alltid plats för en snabb paus, ett kort samtal och den där känslan av dolce vita. Här stannar man inte länge, men vi lovar att du kommer att vilja komma tillbaka.
 						</p>
 					</div>
 				</CardContent>

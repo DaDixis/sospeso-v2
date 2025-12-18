@@ -8,6 +8,8 @@ interface Props
     VariantProps<typeof button> {
   class?: string;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const { variant, size, class: className, ...rest } = Astro.props;

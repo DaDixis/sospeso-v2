@@ -3,7 +3,7 @@ import ChevronDown from "@tabler/icons/outline/chevron-down.svg";
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
-type Props = HTMLAttributes<"button">;
+type Props = HTMLAttributes<"button"> & { class?: string };
 
 export const accordionTrigger = tv({
   base: [

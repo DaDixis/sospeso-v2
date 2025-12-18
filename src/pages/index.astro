@@ -28,7 +28,12 @@ import Footer from '@/components/Footer.astro';
 		<meta name="geo.position" content="59.3365;18.0994" />
 		<meta name="ICBM" content="59.3365, 18.0994" />
 		
-		<!-- DNS prefetch removed - maps not loaded on initial page load -->
+		<link rel="dns-prefetch" href="//www.google.com" />
+		<link rel="dns-prefetch" href="//www.gstatic.com" />
+		<link rel="dns-prefetch" href="//maps.gstatic.com" />
+		<link rel="preconnect" href="https://www.google.com" crossorigin />
+		<link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+		<link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
 		<meta name="description" content="Autentiskt italienskt kaffe på Gärdet, Stockholm. Besök Sospeso för espresso, cornetti och äkta italiensk kaffekultur." />
 		<meta name="generator" content={Astro.generator} />
 		
@@ -57,7 +62,7 @@ import Footer from '@/components/Footer.astro';
 			"name": "Sospeso",
 			"description": "Autentiskt italienskt kaffe på Gärdet, Stockholm. Espresso, cornetti och äkta kaffekultur.",
 			"url": "https://sospesosthlm.com",
-			"telephone": "+46-8-12345678",
+			"telephone": "+468291139",
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "Gärdet",

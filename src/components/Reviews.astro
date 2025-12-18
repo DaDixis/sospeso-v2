@@ -1,10 +1,48 @@
 ---
 // Reviews component - Social proof section
 // Customer testimonials with authentic feedback
-import { Card, CardContent } from '@/components/starwind/card';
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
 import SectionHeader from '@/components/shared/SectionHeader.astro';
 import StarRating from '@/components/shared/StarRating.astro';
+
+function getInitials(name: string) {
+	const parts = name
+		.split(/\s+/)
+		.map((p) => p.replace(/[^\p{L}\p{N}]/gu, ''))
+		.filter(Boolean);
+	if (parts.length === 0) return '';
+	const first = parts[0]?.[0] ?? '';
+	const last = parts.length > 1 ? parts[parts.length - 1]?.[0] ?? '' : '';
+	return (first + last).toUpperCase();
+}
+
+function getAvatarBg(name: string) {
+	let hash = 0;
+	for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+	const hue = hash % 360;
+	return `hsl(${hue} 65% 45%)`;
+}
+
+const reviews = [
+	{
+		name: 'S M',
+		rating: 5,
+		source: 'Google',
+		text: 'Att besöka Sospeso är som att bli en del av en italiensk familj. Här får du espresso med hjärta, fantastiska cannolis och personlig service av ägaren. En plats med äkta italiensk själ och en underbar hund som förgyller stämningen.'
+	},
+	{
+		name: 'Juan Carlos M. Alloza',
+		rating: 5,
+		source: 'Google',
+		text: 'En riktig pärla på Östermalm och ett av stans mysigaste fik. Här bjuds det på utmärkt kaffe, italienska bakverk och förstklassig service. Perfekt för en fika eller take-away, och dessutom välkomnas du av kvarterets trevligaste hund!'
+	},
+	{
+		name: 'Sofia Ceron',
+		rating: 5,
+		source: 'Google',
+		text: 'Utan tvekan det bästa kaffet i Stockholm! Enastående espresso, ljuvliga bakverk och en otroligt mysig atmosfär. Efter att ha varit här vill jag inte dricka kaffe någon annanstans.'
+	}
+];
 ---
 
 <SectionWrapper id="recensioner">
@@ -12,58 +50,40 @@ import StarRating from '@/components/shared/StarRating.astro';
 		
 		<!-- Reviews Grid -->
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-			<!-- Review 1 -->
-			<div class="bg-card rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-				<div class="flex items-center gap-1 mb-3">
-					<StarRating />
+			{reviews.map((review) => (
+				<div class="bg-card rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+					<div class="flex items-center gap-1 mb-4">
+						<StarRating rating={review.rating} />
+					</div>
+					<p class="text-muted-foreground mb-6 font-body leading-relaxed flex-1">
+						“{review.text}”
+					</p>
+					<div class="flex items-center gap-3 mt-auto">
+						<div
+							class="w-10 h-10 rounded-full flex items-center justify-center text-white font-medium font-body select-none"
+							style={`background-color: ${getAvatarBg(review.name)};`}
+							aria-hidden="true"
+						>
+							{getInitials(review.name)}
+						</div>
+						<div>
+							<p class="font-medium text-foreground font-body">{review.name}</p>
+							<p class="text-sm text-muted-foreground font-body">{review.source}</p>
+						</div>
+					</div>
 				</div>
-				<p class="text-muted-foreground mb-4 font-body">
-					"Äntligen en riktig espresso-bar på Gärdet! Så gott kaffe, goda bakverk och mackor. Michel har skapat ett ställe som är värt en omväg."
-				</p>
-				<div>
-					<p class="font-medium text-foreground font-body">Lotta W</p>
-					<p class="text-sm text-muted-foreground font-body">Tripadvisor</p>
-				</div>
-			</div>
-			
-			<!-- Review 2 -->
-			<div class="bg-card rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-				<div class="flex items-center gap-1 mb-3">
-					<StarRating />
-				</div>
-				<p class="text-muted-foreground mb-4 font-body">
-					"Äntligen en högklassig kaffebar på Gärdet! Riktigt bra kaffe, italienska bakverk, frukost och vänlig atmosfär. Hit går jag definitivt igen!"
-				</p>
-				<div>
-					<p class="font-medium text-foreground font-body">Elin M</p>
-					<p class="text-sm text-muted-foreground font-body">Tripadvisor</p>
-				</div>
-			</div>
-			
-			<!-- Review 3 -->
-			<div class="bg-card rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-				<div class="flex items-center gap-1 mb-3">
-					<StarRating />
-				</div>
-				<p class="text-muted-foreground mb-4 font-body">
-					"En halvtrappa ner ligger denna lilla espressobar med gott kaffe och sedvanliga italienska bakverk. Trevligt bemötande och fräsch miljö."
-				</p>
-				<div>
-					<p class="font-medium text-foreground font-body">Phayao13</p>
-					<p class="text-sm text-muted-foreground font-body">Tripadvisor</p>
-				</div>
-			</div>
+			))}
 		</div>
 		
 		<!-- Call to Action -->
 		<div class="text-center mt-8 sm:mt-10">
 			<a 
-				href="https://www.tripadvisor.se/Restaurant_Review-g189852-d26845350-Reviews-Sospeso_Stockholm-Stockholm.html" 
+				href="https://www.google.com/maps/place/Sospeso+Stockholm/@59.3420233,18.0953596,17.47z/data=!4m8!3m7!1s0x465f9d8ced071ca9:0x8ac2c0ad3b5f72ca!8m2!3d59.3423291!4d18.0976034!9m1!1b1!16s%2Fg%2F11kq0t774l" 
 				target="_blank" 
 				rel="noopener noreferrer"
 				class="text-muted-foreground hover:text-foreground font-body underline underline-offset-4 decoration-2 hover:decoration-foreground transition-all duration-200"
 			>
-				Läs fler recensioner på Tripadvisor
+				Läs fler recensioner på Google
 			</a>
 		</div>
 	</SectionWrapper>

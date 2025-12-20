@@ -1,114 +1,172 @@
 ---
-
 import { fetchMenuFromSheet } from '../lib/menu';
 import SectionWrapper from '@/components/shared/SectionWrapper.astro';
-import SectionHeader from '@/components/shared/SectionHeader.astro';
 
-// This runs at build time only - zero runtime cost!
+// Fetch data
 const menuCategories = await fetchMenuFromSheet();
 ---
 
 <SectionWrapper id="meny" maxWidth="max-w-4xl">
-		<SectionHeader title="Vår Meny" centered={true} />
-		
-		<!-- Wooden frame wrapper -->
-		<div class="wood-frame rounded-2xl overflow-hidden shadow-xl p-3 sm:p-4 lg:p-5">
-			
-			<!-- Chalkboard -->
-			<div class="chalkboard rounded-lg py-8 sm:py-10 px-6 sm:px-10 lg:px-14">
-				
-				{menuCategories.map((category, index) => (
-					<div class={index < menuCategories.length - 1 ? "mb-8 sm:mb-10" : "mb-10"}>
-						<h3 class="menu-header">#{category.category}</h3>
-						<div class="space-y-3">
-							{category.items.map((item) => (
-								<div class="menu-item">
-									<span class="menu-name">{item.name}</span>
-									<span class="menu-dots"></span>
-									<span class="menu-price">{item.price}</span>
-								</div>
-							))}
-						</div>
-					</div>
-				))}
-				
-				<!-- Footnote -->
-				<p class="text-sm text-[#faf8f5]/60 italic mt-6" style="font-family: 'Bradley Hand', 'Brush Script MT', cursive;">* Dubbel espresso +10 kr</p>
-			</div>
-		</div>
-	</SectionWrapper>
-</section>
+  
+  <!-- The Pegboard Container -->
+  <!-- overflow-hidden ensures content stays inside the rounded corners -->
+  <div class="pegboard-frame p-2 sm:p-3 shadow-2xl rounded-sm mx-auto overflow-hidden">
+    
+    <!-- Reduced horizontal padding on mobile (px-4) to prevent text cutoff -->
+    <div class="pegboard py-8 px-4 sm:px-10 relative">
+      
+      <!-- Board Header: SOSPESO & STOCKHOLM -->
+      <!-- Added flex-wrap to handle extremely small screens gracefully, though font sizing should prevent it -->
+      <div class="flex flex-wrap justify-between items-end mb-6 font-mono tracking-widest border-b border-white/5 pb-4 gap-2">
+        <div>
+          <!-- Smaller text on mobile (text-xl), larger on desktop (text-3xl) -->
+          <span class="text-[#F4D03F] font-bold text-xl sm:text-3xl block tracking-widest">SOSPESO</span>
+        </div>
+        <div class="text-right">
+          <span class="text-[#faf8f5] font-bold text-xl sm:text-3xl block uppercase tracking-widest">STOCKHOLM</span>
+        </div>
+      </div>
+
+      <!-- Menu Content -->
+      <div class="space-y-8">
+        {menuCategories.map((category, index) => (
+          <div>
+            <!-- Category Header -->
+            <div class="flex justify-between items-end mb-2">
+              <h3 class="peg-header">{category.category}</h3>
+              
+              {/* "OAT 5" - Aligned with the first category (Coffee) */}
+              {/* whitespace-nowrap forces them to stay on one line */}
+              {index === 0 && (
+                <div class="text-right whitespace-nowrap pb-1">
+                  <span class="text-[#faf8f5] font-bold text-lg sm:text-xl font-mono tracking-widest">OAT 5</span>
+                </div>
+              )}
+            </div>
+            
+            <!-- Items -->
+            <div class="space-y-1">
+              {category.items.map((item) => (
+                <div class="group">
+                  <!-- Main Item Row -->
+                  <div class="flex justify-between items-baseline flex-wrap peg-row py-0.5 gap-x-2">
+                    <span class="peg-name">{item.name}</span>
+                    <span class="peg-price ml-auto">{item.price}</span>
+                  </div>
+                  
+                  {/* Description Items (e.g., Juice flavors) */}
+                  {item.description && (
+                     <div class="flex flex-col mt-0.5 space-y-0.5 pl-0">
+                        {item.description.split(',').map((desc) => (
+                          <div class="peg-row py-0.5">
+                            <span class="peg-description block">{desc.trim()}</span>
+                          </div>
+                        ))}
+                     </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Footer / Dog & Allergy Info -->
+      <div class="mt-12 pt-8 border-t border-white/10 text-center font-mono uppercase tracking-widest">
+        
+        <p class="text-[#F4D03F] text-lg sm:text-xl leading-tight mb-2">
+          The dog's name is <br/>"SIV"
+        </p>
+        <p class="text-[#faf8f5] text-sm sm:text-base">It's a she ☺</p>
+
+        <div class="mt-6 flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-[#faf8f5] font-bold text-xs sm:text-base">
+          <span>&rarr;</span>
+          <span class="text-[#F4D03F]">ALLERGISK</span> 
+          <span>FRÅGA OSS</span>
+          <span>&larr;</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</SectionWrapper>
 
 <style>
-	
-	.wood-frame {
-		background: linear-gradient(135deg, #a08060 0%, #8b7355 25%, #7a6548 50%, #8b7355 75%, #a08060 100%);
-	}
-	
-	.chalkboard {
-		background-color: #1a1a1a;
-		background-image: 
-			radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.02) 0%, transparent 50%),
-			radial-gradient(ellipse at 80% 70%, rgba(255,255,255,0.015) 0%, transparent 50%),
-			linear-gradient(180deg, #222 0%, #1a1a1a 30%, #151515 100%);
-		box-shadow: inset 0 0 60px rgba(0,0,0,0.5), inset 0 0 3px rgba(255,255,255,0.03);
-	}
-	
-	.menu-header {
-		font-family: 'Bradley Hand', 'Brush Script MT', cursive;
-		font-size: 1.75rem;
-		color: #faf8f5;
-		margin-bottom: 1.25rem;
-		letter-spacing: 0.02em;
-	}
-	
-	@media (min-width: 640px) {
-		.menu-header {
-			font-size: 2rem;
-		}
-	}
-	
-	.menu-item {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.5rem 0;
-		border-bottom: 1px solid rgba(250, 248, 245, 0.15);
-		gap: 0.5rem;
-		color: #faf8f5;
-		transition: all 0.3s ease;
-		cursor: pointer;
-	}
-	
-	.menu-item:hover {
-		transform: translateX(4px);
-		color: #ffffff;
-		text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-		border-bottom-color: rgba(250, 248, 245, 0.25);
-	}
-	
-	.menu-item:last-child {
-		border-bottom: none;
-	}
-	
-	.menu-name {
-		font-weight: 500;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-		white-space: nowrap;
-		color: #faf8f5;
-	}
-	
-	.menu-dots {
-		flex-grow: 1;
-		border-bottom: 2px dotted rgba(250, 248, 245, 0.3);
-		margin: 0 0.75rem;
-		margin-bottom: 0.3rem;
-	}
-	
-	.menu-price {
-		font-weight: 400;
-		white-space: nowrap;
-		color: #faf8f5;
-	}
+  /* The shiny black frame */
+  .pegboard-frame {
+    background-color: #050505;
+    border: 3px solid #1a1a1a;
+    border-radius: 4px;
+    box-shadow: 
+      0 0 0 1px #333,
+      0 20px 40px -10px rgba(0, 0, 0, 0.9);
+  }
+
+  /* The Perforated Board Effect */
+  .pegboard {
+    background-color: #151515;
+    background-image: 
+      radial-gradient(circle, #000000 35%, transparent 40%);
+    background-size: 14px 14px;
+    background-position: 0 0;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.9);
+    min-height: 600px;
+  }
+
+  /* Typography */
+  .peg-header {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #F4D03F;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+    line-height: 1;
+  }
+
+  /* Main Product Name */
+  .peg-name {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1.125rem; /* 18px */
+    color: #faf8f5;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0px rgba(0,0,0,1);
+  }
+
+  /* Description/Flavor Name */
+  .peg-description {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 0.9rem; /* Smaller than main items */
+    color: rgba(250, 248, 245, 0.85); 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0px rgba(0,0,0,1);
+  }
+
+  .peg-price {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #faf8f5;
+    letter-spacing: 0.1em;
+    text-align: right;
+    text-shadow: 1px 1px 0px rgba(0,0,0,1);
+    white-space: nowrap;
+  }
+  
+  .peg-row {
+    min-height: 1.5rem;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 640px) {
+    .peg-header { font-size: 1.25rem; }
+    .peg-name { font-size: 1rem; }
+    .peg-price { font-size: 1rem; }
+    .peg-description { font-size: 0.85rem; }
+  }
 </style>
